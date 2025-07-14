@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnapStyle - Your Complete Website</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #ffffff;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .navbar-brand {
+            color: #000000;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar-brand:hover {
+            color: #007bff;
+        }
+
+        .navbar-nav .nav-link {
+            color: #000000;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #007bff;
+            transform: scale(1.1);
+        }
+
+        .navbar-light .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        .search-bar-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 15px;
+            margin: 0 20px;
+        }
+
+        .search-bar {
+            padding: 10px;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+        }
+
+        .search-bar::placeholder {
+            color: #888888;
+        }
+
+        .search-bar:focus {
+            outline: none;
+            background-color: #ffffff;
+            border-color: #007bff;
+        }
+
+        /* General Content Container */
+        .content-section {
+            display: none;
+            /* Hidden by default, shown by JS */
+            padding: 20px 0;
+            min-height: 70vh;
+            /* Ensure some height for content */
+        }
+
+        .container {
+            max-width: auto;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #ADD8E6;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .heading {
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .cards {
+            display: flex;
+            overflow-x: auto;
+            padding-bottom: 15px;
+            -webkit-overflow-scrolling: touch;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            min-width: 280px;
+            max-width: 320px;
+            flex: 1;
+            margin: 15px;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            object-fit: contain;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card img:hover {
+            transform: scale(1.1);
+        }
+
+        .card .description {
+            margin-top: 10px;
+            font-size: 16px;
+            height: 40px;
+            overflow: hidden;
+        }
+
+        .card .price {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #007bff;
+        }
+
+        .slideshow-container {
+            width: 100%;
+            max-width: 100%;
+            position: relative;
+            overflow: hidden;
+            height: 450px;
+            margin-top: 20px;
+        }
+
+        .slide {
+            display: none;
+            /* Hidden by default, JS controls display */
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0;
+        }
+
+        /* Removed .fade animation as it conflicted with JS control */
+
+        @keyframes slideLeft {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        .card-container {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            padding: 15px;
+            margin: 10px auto;
+            border: black;
+            border-radius: 15px;
+            background-color: #f0f0f0;
+            border: 1px solid #999;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .c1 {
+            display: flex;
+            padding: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .h11 {
+            font-size: 17px;
+            font-family: roboto;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .subcard-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 15px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .subcard-container>div {
+            flex: 1;
+            margin: 0 5px;
+        }
+
+        .subcard-container img {
+            width: 100%;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+
+        .subcard-container p {
+            font-size: 12px;
+            line-height: 1.3;
+        }
+
+        .card-container a {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .card-container a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            display: flex;
+            flex-direction: column;
+            background-color: black;
+            align-items: center;
+            color: white;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+
+        .footer0 h1 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            transition-duration: 1s;
+        }
+
+        .footer0 h1:hover {
+            color: #ddd;
+        }
+
+        .footer1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+
+        .social-media {
+            display: flex;
+            justify-content: center;
+            color: white;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .social-media a {
+            color: white;
+            margin: 10px;
+            border-radius: 5px;
+            color: white;
+            font-size: 28px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .social-media a ion-icon {
+            color: white;
+            background-color: black;
+        }
+
+        .social-media a:hover ion-icon {
+            color: red;
+            transform: translateY(-5px);
+        }
+
+        .footer2 {
+            display: flex;
+            width: 100%;
+            justify-content: space-evenly;
+            align-items: flex-start;
+            text-decoration: none;
+            flex-wrap: wrap;
+            padding: 0 10px;
+        }
+
+        .footer2 .heading {
+            font-weight: 900;
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+
+        .footer2 .div {
+            margin: 8px 0;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        .footer2 .div:hover {
+            transform: translateX(5px);
+            color: #ddd;
+        }
+
+        .footer3 {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .footer3 h4 {
+            margin: 0 5px;
+            color: #007bff;
+        }
+
+        .adv {
+            padding: 20px;
+            margin-left: 20px;
+        }
+
+        .container2 {
+            width: 95%;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 40px 20px;
+            background-image: url('https://img.freepik.com/free-photo/blank-banner-realistic-golden-candle-diwali-gradient-background_125540-3611.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .container2 h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .container2 p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+
+        .card2 {
+            min-width: 150px;
+            max-width: 200px;
+            height: 180px;
+            flex: 1;
+            margin: 15px;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .card2 img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card2 img:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- Page Specific Styles (for Login, Register, Contact) --- */
+        .form-section {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .form-section .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-section label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-section .form-control {
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        .form-section .btn-primary {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #007bff;
+            border-color: #007bff;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-section .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .form-section .text-center a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .form-section .text-center a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+
+        .contact-info strong {
+            color: #333;
+        }
+
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .navbar-nav {
+                margin: 10px auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-toggler {
+                display: block;
+                border: none;
+            }
+
+            .navbar-collapse {
+                width: 100%;
+            }
+
+            .navbar-nav {
+                margin: 10px 0;
+            }
+
+            .navbar-nav .nav-item {
+                text-align: center;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 8px 15px;
+            }
+
+            .search-bar-container {
+                order: -1;
+                margin-bottom: 10px;
+                padding: 0 10px;
+            }
+
+            .slideshow-container {
+                height: 250px;
+            }
+
+            .heading {
+                font-size: 20px;
+            }
+
+            .cards {
+                flex-wrap: wrap;
+                justify-content: center;
+                overflow-x: hidden;
+            }
+
+            .card {
+                margin: 10px;
+                min-width: 90%;
+            }
+
+            .c1 {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card-container {
+                max-width: 95%;
+                margin: 10px auto;
+            }
+
+            .subcard-container {
+                flex-direction: row;
+                justify-content: space-around;
+                margin-bottom: 10px;
+            }
+
+            .subcard-container>div {
+                margin: 0 3px;
+            }
+
+            .container2 {
+                padding: 20px 15px;
+            }
+
+            .container2 h1 {
+                font-size: 2em;
+            }
+
+            .container2 p {
+                font-size: 1em;
+            }
+
+            .card2 {
+                min-width: 120px;
+                max-width: 150px;
+                height: 150px;
+                margin: 10px;
+            }
+
+            .card2 img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .footer2 {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer2 div {
+                margin-bottom: 20px;
+            }
+
+            .form-section {
+                margin: 30px 15px;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar-brand {
+                font-size: 20px;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 5px 10px;
+                font-size: 14px;
+            }
+
+            .search-bar {
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            .slideshow-container {
+                height: 200px;
+            }
+
+            .card {
+                min-width: 95%;
+                margin: 8px auto;
+            }
+
+            .card .description {
+                font-size: 14px;
+            }
+
+            .card .price {
+                font-size: 16px;
+            }
+
+            .card-container {
+                padding: 10px;
+            }
+
+            .h11 {
+                font-size: 15px;
+            }
+
+            .subcard-container img {
+                height: 70px;
+            }
+
+            .subcard-container p {
+                font-size: 10px;
+            }
+
+            .container2 h1 {
+                font-size: 1.5em;
+            }
+
+            .container2 p {
+                font-size: 0.9em;
+            }
+
+            .card2 {
+                min-width: 100px;
+                max-width: 120px;
+                height: 120px;
+                margin: 8px;
+            }
+
+            .card2 img {
+                width: 70px;
+                height: 70px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light justify-content-between">
+        <div class="container">
+            <a class="navbar-brand mr-auto" href="#" onclick="showPage('home-page')">SnapStyle</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('home-page')">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('register-page')">Shopping</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('contactus-page')">Contact Us</a>
+                    </li>
+                </ul>
+
+                <div class="search-bar-container">
+                    <input type="text" class="search-bar" placeholder="Search...">
+                </div>
+
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" onclick="showPage('login-page')">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="home-page" class="content-section">
+        <div class="slideshow-container">
+            <div class="slide">
+                <img class="img" src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/Wireless/OnePlus/Jupiter23/GW/Event/D2Phase1/NordCe3lite/D97529701_IN_WLD_Jupiter23_OnePlus_Nord_CE_3_Lite_PC_Hero_3000x1200._CB575677955_.jpg" alt="Slide 1">
+            </div>
+            <div class="slide">
+                <img class="img" src="https://images-eu.ssl-images-amazon.com/images/G/31/Events/img23/Jupiter23/Homepage/KV_Hero_PC_Day-1_2X_EN._CB575892060_.jpg" alt="Slide 2">
+            </div>
+            <div class="slide">
+                <img class="img" src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/Wireless/OnePlus/Jupiter23/GW/Event/D2Phase1/NordCe3lite/D97529701_IN_WLD_Jupiter23_OnePlus_Nord_CE_3_Lite_PC_Hero_3000x1200._CB575677955_.jpg" alt="Slide 3">
+            </div>
+            <div class="slide">
+                <img class="img" src="https://images-eu.ssl-images-amazon.com/images/G/31/saba/jup23/Homepage_DesktopHeroTemplate_3000x1200_22June2023_PC._CB575703378_.jpg" alt="Slide 4">
+            </div>
+            <div class="slide">
+                <img class="img" src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG23/Ayushi/mAINEVENT/Homepage_DesktopHeroTemplate_3000x1200_22June2023_1._CB575918014_.jpg" alt="Slide 5">
+            </div>
+            <div class="slide">
+                <img class="img" src="https://images-eu.ssl-images-amazon.com/images/G/31/img12/home-improvement/Store/JUPITER23/Gateway/PC_lifestyle_3000x1500_day1._CB575868294_.jpg" alt="Slide 6">
+            </div>
+            <div class="slide">
+                <img class="img" src="https://images-eu.ssl-images-amazon.com/images/G/31/img2020/img21/apparelGW/jup23p1/recpcroe/MA1_3000._CB576071902_.jpg" alt="Slide 7">
+            </div>
+        </div>
+
+        <div class="c1">
+            <div class="card-container">
+                <h1 class="h11">Up to 40% off | Smartphones that suit your budget</h1>
+                <div class="subcard-container">
+                    <div>
+                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/Wireless/JupiterHCTILESMSO/Curation/D99268497_WLD-Jupiter23-_-MSO_Jupiter1_Desktop_QuadImageCard_186x116_1._SY116_CB577349944_.jpg">
+                        <p>Budget|Under ₹14000</p>
+                    </div>
+                    <div>
+                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/Wireless/JupiterHCTILESMSO/Curation/D99268497_WLD-Jupiter23-_-MSO_Jupiter1_Desktop_QuadImageCard_186x116_2._SY116_CB577349944_.jpg">
+                        <p>Mid range|₹10,000-₹25000</p>
+                    </div>
+                </div>
+                <div class="subcard-container">
+                    <div>
+                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/Wireless/JupiterHCTILESMSO/Curation/D99268497_WLD-Jupiter23-_-MSO_Jupiter1_Desktop_QuadImageCard_186x116_3._SY116_CB577349944_.jpg">
+                        <p>Premium|₹25,000-₹40000</p>
+                    </div>
+                    <div>
+                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img22/Wireless/Meghana/iQOO/V7/hhh/D99268497_WLD-Jupiter23-_-MSO_Jupiter1_Desktop_QuadImageCard_186x116._SY116_CB577542452_.jpg">
+                        <p>Ultra premium|Above ₹40,000</p>
+                    </div>
+                </div>
+                <a href="#">See all offers</a>
+
+            </div>
+            <div class="card-container">
+                <h1 class="h11">Up to 70% off | Upgrade your home with products from</h1>
+                <div class="subcard-container">
+                    <div>
+                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/Local/Appliances_186x116_Jupiter-23_PC_QC._SY116_CB575769983_.jpg">
+                        <p>Appliances</p>
+                    </div>
+                    <div>
+                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/Local/Furniture186X116_Jupiter-23_PC_QC._SY116_CB575769983_.jpg">
+                        <p>Furnitures</p>
+                    </div>
+                </div>
+                <div class="subcard-container">
+                    <div>
+                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/Local/Home186X116_Jupiter-23_PC_QC._SY116_CB575769983_.jpg">
+                        <p>Home</p>
+                    </div>
+                    <div>
+                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/Local/Kitchen186X116_Jupiter-23_PC_QC._SY116_CB575769983_.jpg">
+                        <p>Kitchen</p>
+                    </div>
+                </div>
+                <a href="#">See all offers</a>
+
+            </div>
+            <div class="card-container">
+                <h1 class="h11">Minimum 50% off | Shoes & handbags</h1>
+                <div class="subcard-container">
+                    <div>
+                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/Softlines_JWL_SH_GW_Assets/Jupiter_2023/PCQC/Revised1/Sports_low._SY116_CB577519404_.png">
+                        <p>Sports Shoe</p>
+                    </div>
+                    <div>
+                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/Softlines_JWL_SH_GW_Assets/Jupiter_2023/PCQC/Revised1/Men_low_res._SY116_CB577506297_.jpg">
+                        <p>Mens Shoe</p>
+                    </div>
+                </div>
+                <div class="subcard-container">
+                    <div>
+                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/Softlines_JWL_SH_GW_Assets/Jupiter_2023/PCQC/Revised1/Heel_low_res._SY116_CB577506297_.jpg">
+                        <p>Womens Shoe</p>
+                    </div>
+                    <div>
+                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/Softlines_JWL_SH_GW_Assets/Jupiter_2023/PCQC/Revised1/hb_low._SY116_CB577519404_.png">
+                        <p>Handbags</p>
+                    </div>
+                </div>
+                <a href="#">See all offers</a>
+
+            </div>
+            <div class="card-container">
+                <h1 class="h11">Great offers on wide range of TVs for every room</h1>
+                <div class="subcard-container">
+                    <div>
+                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG23/TVs/Sabeer/JUP_23/2x_Desktop_Quad_card_w_title_-_Card_1_copy_40.5x_updated._SY116_CB575872363_.jpg">
+                        <p>Budget TVs | Up to 60% off</p>
+                    </div>
+                    <div>
+                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG23/TVs/Sabeer/JUP_23/2x_Desktop_Quad_card_w_title_-_Card_1_copy_30.5x._SY116_CB575872363_.jpg">
+                        <p>
+                            4K TVs | No Cost EMI</p>
+                    </div>
+                </div>
+                <div class="subcard-container">
+                    <div>
+                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG23/TVs/Sabeer/JUP_23/2x_Desktop_Quad_card_w_title_-_Card_1_copy_20.5x._SY116_CB575872363_.jpg">
+                        <p>Big Screens | Up to 3 years warranty</p>
+                    </div>
+                    <div>
+                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG23/TVs/Sabeer/JUP_23/2x_Desktop_Quad_card_w_title_-_Card_1_copy0.5x._SY116_CB575872363_.jpg">
+                        <p>Ultra Premium TVs | Up to 50% off</p>
+                    </div>
+                </div>
+                <a href="#">See all offers</a>
+
+            </div>
+
+        </div>
+
+        <div id="bbd" class="container">
+            <h2 class="heading">Today's Deals</h2>
+            <div class="cards">
+                <div class="card">
+                    <a href="#">
+                        <img src="https://m.media-amazon.com/images/I/41Xe96WtZoL._AC_SY200_.jpg" alt="Product 1">
+                    </a>
+                    <p class="description">OnePlus Nord CE 3 Lite 5G</p>
+                    <span class="price">₹24,000</span>
+                </div>
+                <div class="card">
+                    <a href="#">
+                        <img src="https://m.media-amazon.com/images/I/417Oa7sV+wL._AC_SY200_.jpg" alt="Product 1">
+                    </a>
+                    <p class="description">Fire-Boltt Phoenix Pro 1.39" Bluetooth </p>
+                    <span class="price">₹1900.99</span>
+                </div>
+                <div class="card">
+                    <a href="#">
+                        <img src="https://m.media-amazon.com/images/I/4150SciT6XL._AC_SY200_.jpg" alt="Product 1">
+                    </a>
+                    <p class="description">boAt Newly Launched Airdopes Earbuds</p>
+                    <span class="price">₹2900.99</span>
+                </div>
+                <div class="card">
+                    <a href="#">
+                        <img src="https://m.media-amazon.com/images/I/41L1Fw2xgOL._AC_SY200_.jpg" alt="Product 1">
+                    </a>
+                    <p class="description">Apple 2022 iPad Air M1 Chip</p>
+                    <span class="price">₹49,000.99</span>
+                </div>
+                <div class="card">
+                    <a href="#">
+                        <img src="https://m.media-amazon.com/images/I/41gbs1aJDPL._AC_SY200_.jpg" alt="Product 1">
+                    </a>
+                    <p class="description">Redmi A2 (Classic Black, 2GB RAM, 64GB Storage)</p>
+                    <span class="price">₹6900.99</span>
+                </div>
+                <div class="card">
+                    <a href="#">
+                        <img src="https://m.media-amazon.com/images/I/41jD1eFYh9L._SX300_SY300_QL70_FMwebp_.jpg" alt="Product 1">
+                    </a>
+                    <p class="description">Fire-Boltt India's No 1 Smartwatch Brand Talk 2 Bluetooth</p>
+                    <span class="price">₹1,299</span>
+                </div>
+                <div class="card">
+                    <a href="#">
+                        <img src="https://m.media-amazon.com/images/I/61vsa8+cNoL._SX679_.jpg" alt="Product 1">
+                    </a>
+                    <p class="description">OnePlus Buds Z2 Bluetooth Truly Wireless </p>
+                    <span class="price">₹3,999 </span>
+                </div>
+                <div class="card">
+                    <a href="#">
+                        <img src="https://m.media-amazon.com/images/I/81lGxS2ZisL._SX679_.jpg" alt="Product 1">
+                    </a>
+                    <p class="description">All-New Echo Dot (5th Gen, 2023 release)</p>
+                    <span class="price"> ₹4,449</span>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container2">
+            <div class="content">
+                <h1>Unlock Amazing Deals!</h1>
+                <p>Don't miss out on our limited-time offers. Shop now and save big!</p>
+            </div>
+        </div>
+        <br>
+
+        <div id="bbd" class="container">
+            <h2 class="heading">Explore Top offers in Electronics</h2>
+            <div class="cards">
+                <div class="card2">
+                    <img src="https://m.media-amazon.com/images/I/41Xe96WtZoL._AC_SY200_.jpg" alt="Smartphones">
+                    <p class="description">Smartphones</p>
+                </div>
+                <div class="card2">
+                    <img src="https://m.media-amazon.com/images/I/417Oa7sV+wL._AC_SY200_.jpg" alt="Smartwatches">
+                    <p class="description">Smartwatches</p>
+                </div>
+                <div class="card2">
+                    <img src="https://m.media-amazon.com/images/I/4150SciT6XL._AC_SY200_.jpg" alt="Earbuds">
+                    <p class="description">Earbuds</p>
+                </div>
+                <div class="card2">
+                    <img src="https://m.media-amazon.com/images/I/41L1Fw2xgOL._AC_SY200_.jpg" alt="Tablets">
+                    <p class="description">Tablets</p>
+                </div>
+                <div class="card2">
+                    <img src="https://m.media-amazon.com/images/I/41gbs1aJDPL._AC_SY200_.jpg" alt="Budget Phones">
+                    <p class="description">Budget Phones</p>
+                </div>
+                <div class="card2">
+                    <img src="https://m.media-amazon.com/images/I/41jD1eFYh9L._SX300_SY300_QL70_FMwebp_.jpg" alt="Fitness Trackers">
+                    <p class="description">Fitness Trackers</p>
+                </div>
+                <div class="card2">
+                    <img src="https://m.media-amazon.com/images/I/61vsa8+cNoL._SX679_.jpg" alt="Wireless Earphones">
+                    <p class="description">Wireless Earphones</p>
+                </div>
+                <div class="card2">
+                    <img src="https://m.media-amazon.com/images/I/81lGxS2ZisL._SX679_.jpg" alt="Smart Speakers">
+                    <p class="description">Smart Speakers</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="login-page" class="content-section">
+        <div class="container">
+            <div class="form-section">
+                <h2>Login to SnapStyle</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="loginEmail">Email address</label>
+                        <input type="email" class="form-control" id="loginEmail" placeholder="Enter email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <p class="text-center mt-3">Don't have an account? <a href="#" onclick="showPage('register-page')">Register here</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="register-page" class="content-section">
+        <div class="container">
+            <div class="form-section">
+                <h2>Register for SnapStyle</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="registerName">Full Name</label>
+                        <input type="text" class="form-control" id="registerName" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email address</label>
+                        <input type="email" class="form-control" id="registerEmail" placeholder="Enter email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" class="form-control" id="registerPassword" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                    <p class="text-center mt-3">Already have an account? <a href="#" onclick="showPage('login-page')">Login here</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="contactus-page" class="content-section">
+        <div class="container">
+            <div class="form-section">
+                <h2>Contact SnapStyle</h2>
+                <form action="https://formspree.io/f/mexample" method="POST">
+                    <div class="form-group">
+                        <label for="contactName">Your Name</label>
+                        <input type="text" name="name" class="form-control" id="contactName" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Your Email</label>
+                        <input type="email" name="_replyto" class="form-control" id="contactEmail" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactMessage">Message</label>
+                        <textarea name="message" class="form-control" id="contactMessage" rows="5" placeholder="Type your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+                <div class="contact-info">
+                    <p><strong>Email:</strong> support@snapstyle.com</p>
+                    <p><strong>Phone:</strong> +91 12345 67890</p>
+                    <p><strong>Address:</strong> 123 Fashion Lane, Style City, India</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer0">
+            <h1>SnapStyle</h1>
+        </div>
+        <div class="footer1">
+            Connect with us:
+            <div class="social-media">
+                <a href="#">
+                    <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+                <a href="#">
+                    <ion-icon name="logo-whatsapp"></ion-icon>
+                </a>
+                <a href="#">
+                    <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+                <a href="#">
+                    <ion-icon name="logo-twitter"></ion-icon>
+                </a>
+            </div>
+        </div>
+        <div class="footer2">
+            <div class="product">
+                <div class="heading">Products</div>
+                <div class="div">New Arrivals</div>
+                <div class="div">Best Sellers</div>
+                <div class="div">Deals</div>
+                <div class="div">Gift Cards</div>
+            </div>
+            <div class="services">
+                <div class="heading">Services</div>
+                <div class="div">Customer Service</div>
+                <div class="div">Returns & Exchanges</div>
+                <div class="div">Shipping</div>
+                <div class="div">Privacy Policy</div>
+            </div>
+            <div class="company">
+                <div class="heading">Company</div>
+                <div class="div">About Us</div>
+                <div class="div">Careers</div>
+                <div class="div">Press</div>
+                <div class="div">Blog</div>
+            </div>
+            <div class="contact">
+                <div class="heading">Contact Us</div>
+                <div class="div">Support Center</div>
+                <div class="div">Feedback</div>
+                <div class="div">Partnerships</div>
+            </div>
+        </div>
+        <div class="footer3">
+            <h4>&copy; 2025 SnapStyle. All rights reserved.</h4>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-static-website/js/ccbp-ui-kit.js"></script>
+
+    <script>
+        let slideIndex = 0;
+        let slideshowTimeout;
+
+        function showSlides() {
+            let slides = document.querySelectorAll("#home-page .slide");
+            if (slides.length === 0 || document.getElementById('home-page').style.display === 'none') {
+                clearTimeout(slideshowTimeout);
+                return;
+            }
+            slides.forEach(slide => {
+                slide.style.display = "none";
+                slide.style.animation = "";
+            });
+            slideIndex++;
+            if (slideIndex > slides.length) slideIndex = 1;
+            slides[slideIndex - 1].style.display = "block";
+            slides[slideIndex - 1].style.animation = "slideLeft 1s forwards";
+            slideshowTimeout = setTimeout(showSlides, 3000);
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(pageId).style.display = 'block';
+            if (pageId === 'home-page') {
+                slideIndex = 0;
+                showSlides();
+            } else {
+                clearTimeout(slideshowTimeout);
+            }
+            if (window.innerWidth <= 768) {
+                $('.navbar-collapse').collapse('hide');
+            }
+            window.scrollTo(0, 0);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('home-page');
+            showSlides();
+        });
+    </script>
+</body>
+
+</html>
