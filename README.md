@@ -16,4 +16,3 @@ It features product sections, login/register/contact forms, and a working contac
 - HTML5
 - CSS3
 - Bootstrap 4
-- JavaScript
