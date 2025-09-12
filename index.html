@@ -13,40 +13,42 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            /* Changed body background for a cleaner look */
+            background-color: #f8f9fa; 
         }
 
         /* Navbar Styles */
         .navbar {
-            background-color: #ffffff;
+            /* Changed navbar background to light blue */
+            background-color: #E0F7FA !important; /* Light Cyan */
             padding: 10px 0;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid #cce7ee;
         }
 
         .navbar-brand {
-            color: #000000;
+            color: #004d40; /* Dark Teal for contrast */
             font-size: 24px;
             font-weight: bold;
         }
 
         .navbar-brand:hover {
-            color: #007bff;
+            color: #00796b; /* Lighter Teal on hover */
         }
 
         .navbar-nav .nav-link {
-            color: #000000;
+            color: #004d40; /* Dark Teal for contrast */
             text-decoration: none;
             padding: 10px 15px;
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
         }
 
         .navbar-nav .nav-link:hover {
-            color: #007bff;
+            color: #00796b; /* Lighter Teal on hover */
             transform: scale(1.1);
         }
 
         .navbar-light .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 77, 64, 0.7%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
 
         .search-bar-container {
@@ -72,56 +74,48 @@
         .search-bar:focus {
             outline: none;
             background-color: #ffffff;
-            border-color: #007bff;
+            border-color: #00796b;
         }
 
-        /* General Content Container */
+        /* General Content Section Styles */
         .content-section {
-            display: none;
-            /* Hidden by default, shown by JS */
-            padding: 20px 0;
-            min-height: 70vh;
-            /* Ensure some height for content */
+            padding: 40px 0;
         }
-
-        .container {
+        
+        /* Using Bootstrap's .container, but keeping custom styles for inner blocks */
+        .custom-container {
             max-width: auto;
             margin: 20px auto;
-            padding: 10px;
-            background-color: #ADD8E6;
+            padding: 20px;
+            /* Updated container to a light, neutral color */
+            background-color: #e3f2fd;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
         }
 
         .heading {
             font-size: 24px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             text-align: center;
+            font-weight: bold;
+            color: #333;
         }
 
-        .cards {
-            display: flex;
-            overflow-x: auto;
-            padding-bottom: 15px;
-            -webkit-overflow-scrolling: touch;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
+        /* Card Styles (Products) */
         .card {
-            min-width: 280px;
-            max-width: 320px;
-            flex: 1;
-            margin: 15px;
+            margin: 0; /* Margin will be handled by Bootstrap columns */
             padding: 20px;
             border-radius: 10px;
             cursor: pointer;
-            background-color: #fff;
+            /* Changed card background to a very light blue */
+            background-color: #F0F8FF; /* AliceBlue */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
+            height: 100%; /* Make cards in a row equal height */
+            border: none;
         }
 
         .card img {
@@ -141,6 +135,7 @@
             font-size: 16px;
             height: 40px;
             overflow: hidden;
+            color: #555;
         }
 
         .card .price {
@@ -148,73 +143,46 @@
             margin-top: 10px;
             font-weight: bold;
             font-size: 18px;
-            color: #007bff;
+            color: #0d47a1; /* Darker Blue for price */
         }
-
-        .slideshow-container {
+        
+        /* Static Hero Image (Replaces Slideshow) */
+        .hero-image-container {
             width: 100%;
             max-width: 100%;
-            position: relative;
             overflow: hidden;
             height: 450px;
             margin-top: 20px;
         }
 
-        .slide {
-            display: none;
-            /* Hidden by default, JS controls display */
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        .img {
+        .hero-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 0;
         }
 
-        /* Removed .fade animation as it conflicted with JS control */
-
-        @keyframes slideLeft {
-            from {
-                transform: translateX(100%);
-            }
-
-            to {
-                transform: translateX(0);
-            }
-        }
-
+        /* Sub-Card container Styles (for categories) */
         .card-container {
             width: 100%;
-            max-width: 350px;
-            height: auto;
+            height: 100%; /* Fill column height */
             padding: 15px;
-            margin: 10px auto;
-            border: black;
             border-radius: 15px;
-            background-color: #f0f0f0;
-            border: 1px solid #999;
+            /* Changed card-container background to match cards */
+            background-color: #F0F8FF; /* AliceBlue */
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .c1 {
             display: flex;
-            padding: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
+            flex-direction: column;
+            border: 1px solid #dee2e6;
         }
-
+        
         .h11 {
             font-size: 17px;
-            font-family: roboto;
+            font-family: roboto, sans-serif;
             font-weight: bold;
             margin-bottom: 15px;
             text-align: center;
+            flex-grow: 0;
+            color: #333;
         }
 
         .subcard-container {
@@ -225,7 +193,7 @@
             text-align: center;
         }
 
-        .subcard-container>div {
+        .subcard-container > div {
             flex: 1;
             margin: 0 5px;
         }
@@ -241,12 +209,13 @@
         .subcard-container p {
             font-size: 12px;
             line-height: 1.3;
+            color: #555;
         }
 
         .card-container a {
             display: block;
             text-align: center;
-            margin-top: 15px;
+            margin-top: auto; /* Pushes the link to the bottom */
             color: #007bff;
             text-decoration: none;
             font-weight: bold;
@@ -255,111 +224,8 @@
         .card-container a:hover {
             text-decoration: underline;
         }
-
-        footer {
-            display: flex;
-            flex-direction: column;
-            background-color: black;
-            align-items: center;
-            color: white;
-            padding: 20px 0;
-            margin-top: 30px;
-        }
-
-        .footer0 h1 {
-            font-size: 28px;
-            margin-bottom: 15px;
-            transition-duration: 1s;
-        }
-
-        .footer0 h1:hover {
-            color: #ddd;
-        }
-
-        .footer1 {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: white;
-            margin-top: 15px;
-            margin-bottom: 20px;
-        }
-
-        .social-media {
-            display: flex;
-            justify-content: center;
-            color: white;
-            flex-wrap: wrap;
-            margin-top: 10px;
-        }
-
-        .social-media a {
-            color: white;
-            margin: 10px;
-            border-radius: 5px;
-            color: white;
-            font-size: 28px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .social-media a ion-icon {
-            color: white;
-            background-color: black;
-        }
-
-        .social-media a:hover ion-icon {
-            color: red;
-            transform: translateY(-5px);
-        }
-
-        .footer2 {
-            display: flex;
-            width: 100%;
-            justify-content: space-evenly;
-            align-items: flex-start;
-            text-decoration: none;
-            flex-wrap: wrap;
-            padding: 0 10px;
-        }
-
-        .footer2 .heading {
-            font-weight: 900;
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: #007bff;
-        }
-
-        .footer2 .div {
-            margin: 8px 0;
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
-        }
-
-        .footer2 .div:hover {
-            transform: translateX(5px);
-            color: #ddd;
-        }
-
-        .footer3 {
-            margin-top: 40px;
-            margin-bottom: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        .footer3 h4 {
-            margin: 0 5px;
-            color: #007bff;
-        }
-
-        .adv {
-            padding: 20px;
-            margin-left: 20px;
-        }
-
+        
+        /* Call to Action Banner Styles */
         .container2 {
             width: 95%;
             max-width: 900px;
@@ -386,17 +252,17 @@
             line-height: 1.6;
         }
 
-
+        /* Circular Card Styles (Electronics) */
         .card2 {
             min-width: 150px;
             max-width: 200px;
             height: 180px;
-            flex: 1;
-            margin: 15px;
+            margin: auto; /* Center in column */
             padding: 10px;
             border-radius: 50%;
             cursor: pointer;
-            background-color: #fff;
+            /* Changed card background to a very light blue */
+            background-color: #F0F8FF; /* AliceBlue */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
@@ -404,6 +270,7 @@
             justify-content: center;
             text-align: center;
             overflow: hidden;
+            border: none;
         }
 
         .card2 img {
@@ -418,14 +285,15 @@
             transform: scale(1.1);
         }
 
-        /* --- Page Specific Styles (for Login, Register, Contact) --- */
+        /* Form Section Styles (Login, Register, Contact) */
         .form-section {
-            max-width: 500px;
-            margin: 50px auto;
+            width: 100%;
             padding: 30px;
-            background-color: #fff;
+            /* Changed form background to match cards */
+            background-color: #F0F8FF; /* AliceBlue */
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #dee2e6;
         }
 
         .form-section h2 {
@@ -489,79 +357,106 @@
             color: #333;
         }
 
-
-        /* Responsive adjustments */
-        @media (max-width: 992px) {
-            .navbar-nav {
-                margin: 10px auto;
-            }
+        /* Footer Styles */
+        footer {
+            display: flex;
+            flex-direction: column;
+            background-color: black;
+            align-items: center;
+            color: white;
+            padding: 20px 0;
+            margin-top: 30px;
         }
 
+        .footer0 h1 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            transition-duration: 1s;
+        }
+
+        .footer0 h1:hover {
+            color: #ddd;
+        }
+
+        .footer1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+
+        .social-media {
+            display: flex;
+            justify-content: center;
+            color: white;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .social-media a {
+            color: white;
+            margin: 10px;
+            border-radius: 5px;
+            font-size: 28px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .social-media a ion-icon {
+            color: white;
+            background-color: black;
+        }
+
+        .social-media a:hover ion-icon {
+            color: #ff4081; /* Pink hover for social icons */
+            transform: translateY(-5px);
+        }
+        
+        .footer-links .heading {
+            font-weight: 900;
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #007bff;
+            text-align: left;
+        }
+
+        .footer-links .div {
+            margin: 8px 0;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+            text-align: left;
+        }
+
+        .footer-links .div:hover {
+            transform: translateX(5px);
+            color: #ddd;
+        }
+        
+        .footer3 {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .footer3 h4 {
+            margin: 0 5px;
+            color: #007bff;
+        }
+        
+
+        /* Responsive adjustments */
         @media (max-width: 768px) {
-            .navbar-toggler {
-                display: block;
-                border: none;
-            }
-
-            .navbar-collapse {
-                width: 100%;
-            }
-
-            .navbar-nav {
-                margin: 10px 0;
-            }
-
-            .navbar-nav .nav-item {
-                text-align: center;
-            }
-
-            .navbar-nav .nav-link {
-                padding: 8px 15px;
-            }
-
-            .search-bar-container {
-                order: -1;
-                margin-bottom: 10px;
-                padding: 0 10px;
-            }
-
-            .slideshow-container {
+            .hero-image-container {
                 height: 250px;
             }
 
             .heading {
                 font-size: 20px;
-            }
-
-            .cards {
-                flex-wrap: wrap;
-                justify-content: center;
-                overflow-x: hidden;
-            }
-
-            .card {
-                margin: 10px;
-                min-width: 90%;
-            }
-
-            .c1 {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .card-container {
-                max-width: 95%;
-                margin: 10px auto;
-            }
-
-            .subcard-container {
-                flex-direction: row;
-                justify-content: space-around;
-                margin-bottom: 10px;
-            }
-
-            .subcard-container>div {
-                margin: 0 3px;
             }
 
             .container2 {
@@ -587,15 +482,12 @@
                 width: 80px;
                 height: 80px;
             }
-
-            .footer2 {
-                flex-direction: column;
-                align-items: center;
+            
+            .footer-links {
                 text-align: center;
             }
-
-            .footer2 div {
-                margin-bottom: 20px;
+            .footer-links .heading, .footer-links .div {
+                text-align: center;
             }
 
             .form-section {
@@ -618,14 +510,9 @@
                 padding: 8px;
                 font-size: 14px;
             }
-
-            .slideshow-container {
+            
+            .hero-image-container {
                 height: 200px;
-            }
-
-            .card {
-                min-width: 95%;
-                margin: 8px auto;
             }
 
             .card .description {
@@ -634,10 +521,6 @@
 
             .card .price {
                 font-size: 16px;
-            }
-
-            .card-container {
-                padding: 10px;
             }
 
             .h11 {
@@ -676,353 +559,365 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light justify-content-between">
+    <nav class="navbar navbar-expand-lg navbar-light justify-content-between sticky-top">
         <div class="container">
-            <a class="navbar-brand mr-auto" href="#" onclick="showPage('home-page')">SnapStyle</a>
+            <a class="navbar-brand mr-auto" href="#">SnapStyle</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="showPage('home-page')">Home</a>
+                        <a class="nav-link" href="#home-section">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="showPage('register-page')">Shopping</a>
+                        <a class="nav-link" href="#deals-section">Shopping</a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="showPage('contactus-page')">Contact Us</a>
+                        <a class="nav-link" href="#contact-section">Contact Us</a>
                     </li>
                 </ul>
-
                 <div class="search-bar-container">
                     <input type="text" class="search-bar" placeholder="Search...">
                 </div>
-
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a href="#" class="nav-link" onclick="showPage('login-page')">Login</a>
+                        <a href="#login-section" class="nav-link">Login</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div id="home-page" class="content-section">
-        <div class="slideshow-container">
-            <div class="slide">
-                <img class="img" src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/Wireless/OnePlus/Jupiter23/GW/Event/D2Phase1/NordCe3lite/D97529701_IN_WLD_Jupiter23_OnePlus_Nord_CE_3_Lite_PC_Hero_3000x1200._CB575677955_.jpg" alt="Slide 1">
-            </div>
-            <div class="slide">
-                <img class="img" src="https://images-eu.ssl-images-amazon.com/images/G/31/Events/img23/Jupiter23/Homepage/KV_Hero_PC_Day-1_2X_EN._CB575892060_.jpg" alt="Slide 2">
-            </div>
-            <div class="slide">
-                <img class="img" src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/Wireless/OnePlus/Jupiter23/GW/Event/D2Phase1/NordCe3lite/D97529701_IN_WLD_Jupiter23_OnePlus_Nord_CE_3_Lite_PC_Hero_3000x1200._CB575677955_.jpg" alt="Slide 3">
-            </div>
-            <div class="slide">
-                <img class="img" src="https://images-eu.ssl-images-amazon.com/images/G/31/saba/jup23/Homepage_DesktopHeroTemplate_3000x1200_22June2023_PC._CB575703378_.jpg" alt="Slide 4">
-            </div>
-            <div class="slide">
-                <img class="img" src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG23/Ayushi/mAINEVENT/Homepage_DesktopHeroTemplate_3000x1200_22June2023_1._CB575918014_.jpg" alt="Slide 5">
-            </div>
-            <div class="slide">
-                <img class="img" src="https://images-eu.ssl-images-amazon.com/images/G/31/img12/home-improvement/Store/JUPITER23/Gateway/PC_lifestyle_3000x1500_day1._CB575868294_.jpg" alt="Slide 6">
-            </div>
-            <div class="slide">
-                <img class="img" src="https://images-eu.ssl-images-amazon.com/images/G/31/img2020/img21/apparelGW/jup23p1/recpcroe/MA1_3000._CB576071902_.jpg" alt="Slide 7">
+    <main id="home-section" class="content-section">
+        <div class="hero-image-container">
+            <img class="hero-image" src="https://images-eu.ssl-images-amazon.com/images/G/31/Events/img23/Jupiter23/Homepage/KV_Hero_PC_Day-1_2X_EN._CB575892060_.jpg" alt="Promotional Banner">
+        </div>
+        
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card-container">
+                        <h1 class="h11">Up to 40% off | Smartphones</h1>
+                        <div class="subcard-container">
+                            <div>
+                                <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/Wireless/JupiterHCTILESMSO/Curation/D99268497_WLD-Jupiter23-_-MSO_Jupiter1_Desktop_QuadImageCard_186x116_1._SY116_CB577349944_.jpg">
+                                <p>Budget|Under ₹14000</p>
+                            </div>
+                            <div>
+                                <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/Wireless/JupiterHCTILESMSO/Curation/D99268497_WLD-Jupiter23-_-MSO_Jupiter1_Desktop_QuadImageCard_186x116_2._SY116_CB577349944_.jpg">
+                                <p>Mid range|₹10k-₹25k</p>
+                            </div>
+                        </div>
+                        <div class="subcard-container">
+                            <div>
+                                <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/Wireless/JupiterHCTILESMSO/Curation/D99268497_WLD-Jupiter23-_-MSO_Jupiter1_Desktop_QuadImageCard_186x116_3._SY116_CB577349944_.jpg">
+                                <p>Premium|₹25k-₹40k</p>
+                            </div>
+                            <div>
+                                <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img22/Wireless/Meghana/iQOO/V7/hhh/D99268497_WLD-Jupiter23-_-MSO_Jupiter1_Desktop_QuadImageCard_186x116._SY116_CB577542452_.jpg">
+                                <p>Ultra premium|₹40k+</p>
+                            </div>
+                        </div>
+                        <a href="#">See all offers</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card-container">
+                        <h1 class="h11">Up to 70% off | Home products</h1>
+                        <div class="subcard-container">
+                            <div>
+                                <img src="https://images-eu.ssl-images-amazon.com/images/G/31/Local/Appliances_186x116_Jupiter-23_PC_QC._SY116_CB575769983_.jpg">
+                                <p>Appliances</p>
+                            </div>
+                            <div>
+                                <img src="https://images-eu.ssl-images-amazon.com/images/G/31/Local/Furniture186X116_Jupiter-23_PC_QC._SY116_CB575769983_.jpg">
+                                <p>Furnitures</p>
+                            </div>
+                        </div>
+                        <div class="subcard-container">
+                            <div>
+                                <img src="https://images-eu.ssl-images-amazon.com/images/G/31/Local/Home186X116_Jupiter-23_PC_QC._SY116_CB575769983_.jpg">
+                                <p>Home</p>
+                            </div>
+                            <div>
+                                <img src="https://images-eu.ssl-images-amazon.com/images/G/31/Local/Kitchen186X116_Jupiter-23_PC_QC._SY116_CB575769983_.jpg">
+                                <p>Kitchen</p>
+                            </div>
+                        </div>
+                        <a href="#">See all offers</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card-container">
+                        <h1 class="h11">Minimum 50% off | Shoes & handbags</h1>
+                        <div class="subcard-container">
+                            <div>
+                                <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/Softlines_JWL_SH_GW_Assets/Jupiter_2023/PCQC/Revised1/Sports_low._SY116_CB577519404_.png">
+                                <p>Sports Shoes</p>
+                            </div>
+                            <div>
+                                <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/Softlines_JWL_SH_GW_Assets/Jupiter_2023/PCQC/Revised1/Men_low_res._SY116_CB577506297_.jpg">
+                                <p>Men's Shoes</p>
+                            </div>
+                        </div>
+                        <div class="subcard-container">
+                            <div>
+                                <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/Softlines_JWL_SH_GW_Assets/Jupiter_2023/PCQC/Revised1/Heel_low_res._SY116_CB577506297_.jpg">
+                                <p>Women's Shoes</p>
+                            </div>
+                            <div>
+                                <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/Softlines_JWL_SH_GW_Assets/Jupiter_2023/PCQC/Revised1/hb_low._SY116_CB577519404_.png">
+                                <p>Handbags</p>
+                            </div>
+                        </div>
+                        <a href="#">See all offers</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card-container">
+                        <h1 class="h11">Great offers on wide range of TVs</h1>
+                        <div class="subcard-container">
+                            <div>
+                                <img src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG23/TVs/Sabeer/JUP_23/2x_Desktop_Quad_card_w_title_-_Card_1_copy_40.5x_updated._SY116_CB575872363_.jpg">
+                                <p>Budget TVs | Up to 60% off</p>
+                            </div>
+                            <div>
+                                <img src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG23/TVs/Sabeer/JUP_23/2x_Desktop_Quad_card_w_title_-_Card_1_copy_30.5x._SY116_CB575872363_.jpg">
+                                <p>4K TVs | No Cost EMI</p>
+                            </div>
+                        </div>
+                        <div class="subcard-container">
+                            <div>
+                                <img src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG23/TVs/Sabeer/JUP_23/2x_Desktop_Quad_card_w_title_-_Card_1_copy_20.5x._SY116_CB575872363_.jpg">
+                                <p>Big Screens | 3yr warranty</p>
+                            </div>
+                            <div>
+                                <img src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG23/TVs/Sabeer/JUP_23/2x_Desktop_Quad_card_w_title_-_Card_1_copy0.5x._SY116_CB575872363_.jpg">
+                                <p>Ultra Premium | Up to 50% off</p>
+                            </div>
+                        </div>
+                        <a href="#">See all offers</a>
+                    </div>
+                </div>
             </div>
         </div>
+    </main>
 
-        <div class="c1">
-            <div class="card-container">
-                <h1 class="h11">Up to 40% off | Smartphones that suit your budget</h1>
-                <div class="subcard-container">
-                    <div>
-                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/Wireless/JupiterHCTILESMSO/Curation/D99268497_WLD-Jupiter23-_-MSO_Jupiter1_Desktop_QuadImageCard_186x116_1._SY116_CB577349944_.jpg">
-                        <p>Budget|Under ₹14000</p>
-                    </div>
-                    <div>
-                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/Wireless/JupiterHCTILESMSO/Curation/D99268497_WLD-Jupiter23-_-MSO_Jupiter1_Desktop_QuadImageCard_186x116_2._SY116_CB577349944_.jpg">
-                        <p>Mid range|₹10,000-₹25000</p>
-                    </div>
-                </div>
-                <div class="subcard-container">
-                    <div>
-                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/Wireless/JupiterHCTILESMSO/Curation/D99268497_WLD-Jupiter23-_-MSO_Jupiter1_Desktop_QuadImageCard_186x116_3._SY116_CB577349944_.jpg">
-                        <p>Premium|₹25,000-₹40000</p>
-                    </div>
-                    <div>
-                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img22/Wireless/Meghana/iQOO/V7/hhh/D99268497_WLD-Jupiter23-_-MSO_Jupiter1_Desktop_QuadImageCard_186x116._SY116_CB577542452_.jpg">
-                        <p>Ultra premium|Above ₹40,000</p>
-                    </div>
-                </div>
-                <a href="#">See all offers</a>
-
-            </div>
-            <div class="card-container">
-                <h1 class="h11">Up to 70% off | Upgrade your home with products from</h1>
-                <div class="subcard-container">
-                    <div>
-                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/Local/Appliances_186x116_Jupiter-23_PC_QC._SY116_CB575769983_.jpg">
-                        <p>Appliances</p>
-                    </div>
-                    <div>
-                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/Local/Furniture186X116_Jupiter-23_PC_QC._SY116_CB575769983_.jpg">
-                        <p>Furnitures</p>
-                    </div>
-                </div>
-                <div class="subcard-container">
-                    <div>
-                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/Local/Home186X116_Jupiter-23_PC_QC._SY116_CB575769983_.jpg">
-                        <p>Home</p>
-                    </div>
-                    <div>
-                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/Local/Kitchen186X116_Jupiter-23_PC_QC._SY116_CB575769983_.jpg">
-                        <p>Kitchen</p>
-                    </div>
-                </div>
-                <a href="#">See all offers</a>
-
-            </div>
-            <div class="card-container">
-                <h1 class="h11">Minimum 50% off | Shoes & handbags</h1>
-                <div class="subcard-container">
-                    <div>
-                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/Softlines_JWL_SH_GW_Assets/Jupiter_2023/PCQC/Revised1/Sports_low._SY116_CB577519404_.png">
-                        <p>Sports Shoe</p>
-                    </div>
-                    <div>
-                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/Softlines_JWL_SH_GW_Assets/Jupiter_2023/PCQC/Revised1/Men_low_res._SY116_CB577506297_.jpg">
-                        <p>Mens Shoe</p>
-                    </div>
-                </div>
-                <div class="subcard-container">
-                    <div>
-                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/Softlines_JWL_SH_GW_Assets/Jupiter_2023/PCQC/Revised1/Heel_low_res._SY116_CB577506297_.jpg">
-                        <p>Womens Shoe</p>
-                    </div>
-                    <div>
-                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/img23/Softlines_JWL_SH_GW_Assets/Jupiter_2023/PCQC/Revised1/hb_low._SY116_CB577519404_.png">
-                        <p>Handbags</p>
-                    </div>
-                </div>
-                <a href="#">See all offers</a>
-
-            </div>
-            <div class="card-container">
-                <h1 class="h11">Great offers on wide range of TVs for every room</h1>
-                <div class="subcard-container">
-                    <div>
-                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG23/TVs/Sabeer/JUP_23/2x_Desktop_Quad_card_w_title_-_Card_1_copy_40.5x_updated._SY116_CB575872363_.jpg">
-                        <p>Budget TVs | Up to 60% off</p>
-                    </div>
-                    <div>
-                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG23/TVs/Sabeer/JUP_23/2x_Desktop_Quad_card_w_title_-_Card_1_copy_30.5x._SY116_CB575872363_.jpg">
-                        <p>
-                            4K TVs | No Cost EMI</p>
-                    </div>
-                </div>
-                <div class="subcard-container">
-                    <div>
-                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG23/TVs/Sabeer/JUP_23/2x_Desktop_Quad_card_w_title_-_Card_1_copy_20.5x._SY116_CB575872363_.jpg">
-                        <p>Big Screens | Up to 3 years warranty</p>
-                    </div>
-                    <div>
-                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/IMG23/TVs/Sabeer/JUP_23/2x_Desktop_Quad_card_w_title_-_Card_1_copy0.5x._SY116_CB575872363_.jpg">
-                        <p>Ultra Premium TVs | Up to 50% off</p>
-                    </div>
-                </div>
-                <a href="#">See all offers</a>
-
-            </div>
-
-        </div>
-
-        <div id="bbd" class="container">
+    <section id="deals-section" class="content-section" style="background-color: #e3f2fd;">
+        <div class="container">
             <h2 class="heading">Today's Deals</h2>
-            <div class="cards">
-                <div class="card">
-                    <a href="#">
-                        <img src="https://m.media-amazon.com/images/I/41Xe96WtZoL._AC_SY200_.jpg" alt="Product 1">
-                    </a>
-                    <p class="description">OnePlus Nord CE 3 Lite 5G</p>
-                    <span class="price">₹24,000</span>
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <a href="#"><img src="https://m.media-amazon.com/images/I/41Xe96WtZoL._AC_SY200_.jpg" alt="Product 1"></a>
+                        <p class="description">OnePlus Nord CE 3 Lite 5G</p>
+                        <span class="price">₹24,000</span>
+                    </div>
                 </div>
-                <div class="card">
-                    <a href="#">
-                        <img src="https://m.media-amazon.com/images/I/417Oa7sV+wL._AC_SY200_.jpg" alt="Product 1">
-                    </a>
-                    <p class="description">Fire-Boltt Phoenix Pro 1.39" Bluetooth </p>
-                    <span class="price">₹1900.99</span>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <a href="#"><img src="https://m.media-amazon.com/images/I/417Oa7sV+wL._AC_SY200_.jpg" alt="Product 2"></a>
+                        <p class="description">Fire-Boltt Phoenix Pro 1.39" Bluetooth</p>
+                        <span class="price">₹1900.99</span>
+                    </div>
                 </div>
-                <div class="card">
-                    <a href="#">
-                        <img src="https://m.media-amazon.com/images/I/4150SciT6XL._AC_SY200_.jpg" alt="Product 1">
-                    </a>
-                    <p class="description">boAt Newly Launched Airdopes Earbuds</p>
-                    <span class="price">₹2900.99</span>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <a href="#"><img src="https://m.media-amazon.com/images/I/4150SciT6XL._AC_SY200_.jpg" alt="Product 3"></a>
+                        <p class="description">boAt Newly Launched Airdopes Earbuds</p>
+                        <span class="price">₹2900.99</span>
+                    </div>
                 </div>
-                <div class="card">
-                    <a href="#">
-                        <img src="https://m.media-amazon.com/images/I/41L1Fw2xgOL._AC_SY200_.jpg" alt="Product 1">
-                    </a>
-                    <p class="description">Apple 2022 iPad Air M1 Chip</p>
-                    <span class="price">₹49,000.99</span>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <a href="#"><img src="https://m.media-amazon.com/images/I/41L1Fw2xgOL._AC_SY200_.jpg" alt="Product 4"></a>
+                        <p class="description">Apple 2022 iPad Air M1 Chip</p>
+                        <span class="price">₹49,000.99</span>
+                    </div>
                 </div>
-                <div class="card">
-                    <a href="#">
-                        <img src="https://m.media-amazon.com/images/I/41gbs1aJDPL._AC_SY200_.jpg" alt="Product 1">
-                    </a>
-                    <p class="description">Redmi A2 (Classic Black, 2GB RAM, 64GB Storage)</p>
-                    <span class="price">₹6900.99</span>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <a href="#"><img src="https://m.media-amazon.com/images/I/41gbs1aJDPL._AC_SY200_.jpg" alt="Product 5"></a>
+                        <p class="description">Redmi A2 (Classic Black, 2GB RAM, 64GB Storage)</p>
+                        <span class="price">₹6900.99</span>
+                    </div>
                 </div>
-                <div class="card">
-                    <a href="#">
-                        <img src="https://m.media-amazon.com/images/I/41jD1eFYh9L._SX300_SY300_QL70_FMwebp_.jpg" alt="Product 1">
-                    </a>
-                    <p class="description">Fire-Boltt India's No 1 Smartwatch Brand Talk 2 Bluetooth</p>
-                    <span class="price">₹1,299</span>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <a href="#"><img src="https://m.media-amazon.com/images/I/41jD1eFYh9L._SX300_SY300_QL70_FMwebp_.jpg" alt="Product 6"></a>
+                        <p class="description">Fire-Boltt India's No 1 Smartwatch Brand Talk 2 Bluetooth</p>
+                        <span class="price">₹1,299</span>
+                    </div>
                 </div>
-                <div class="card">
-                    <a href="#">
-                        <img src="https://m.media-amazon.com/images/I/61vsa8+cNoL._SX679_.jpg" alt="Product 1">
-                    </a>
-                    <p class="description">OnePlus Buds Z2 Bluetooth Truly Wireless </p>
-                    <span class="price">₹3,999 </span>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <a href="#"><img src="https://m.media-amazon.com/images/I/61vsa8+cNoL._SX679_.jpg" alt="Product 7"></a>
+                        <p class="description">OnePlus Buds Z2 Bluetooth Truly Wireless</p>
+                        <span class="price">₹3,999</span>
+                    </div>
                 </div>
-                <div class="card">
-                    <a href="#">
-                        <img src="https://m.media-amazon.com/images/I/81lGxS2ZisL._SX679_.jpg" alt="Product 1">
-                    </a>
-                    <p class="description">All-New Echo Dot (5th Gen, 2023 release)</p>
-                    <span class="price"> ₹4,449</span>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <a href="#"><img src="https://m.media-amazon.com/images/I/81lGxS2ZisL._SX679_.jpg" alt="Product 8"></a>
+                        <p class="description">All-New Echo Dot (5th Gen, 2023 release)</p>
+                        <span class="price">₹4,449</span>
+                    </div>
                 </div>
             </div>
         </div>
-        <br>
+    </section>
+    
+    <section class="content-section">
         <div class="container2">
-            <div class="content">
-                <h1>Unlock Amazing Deals!</h1>
-                <p>Don't miss out on our limited-time offers. Shop now and save big!</p>
-            </div>
+            <h1>Unlock Amazing Deals!</h1>
+            <p>Don't miss out on our limited-time offers. Shop now and save big!</p>
         </div>
-        <br>
+    </section>
 
-        <div id="bbd" class="container">
+    <section class="content-section" style="background-color: #e3f2fd;">
+        <div class="container">
             <h2 class="heading">Explore Top offers in Electronics</h2>
-            <div class="cards">
-                <div class="card2">
-                    <img src="https://m.media-amazon.com/images/I/41Xe96WtZoL._AC_SY200_.jpg" alt="Smartphones">
-                    <p class="description">Smartphones</p>
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 d-flex justify-content-center">
+                    <div class="card2">
+                        <img src="https://m.media-amazon.com/images/I/41Xe96WtZoL._AC_SY200_.jpg" alt="Smartphones">
+                        <p class="description">Smartphones</p>
+                    </div>
                 </div>
-                <div class="card2">
-                    <img src="https://m.media-amazon.com/images/I/417Oa7sV+wL._AC_SY200_.jpg" alt="Smartwatches">
-                    <p class="description">Smartwatches</p>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 d-flex justify-content-center">
+                    <div class="card2">
+                        <img src="https://m.media-amazon.com/images/I/417Oa7sV+wL._AC_SY200_.jpg" alt="Smartwatches">
+                        <p class="description">Smartwatches</p>
+                    </div>
                 </div>
-                <div class="card2">
-                    <img src="https://m.media-amazon.com/images/I/4150SciT6XL._AC_SY200_.jpg" alt="Earbuds">
-                    <p class="description">Earbuds</p>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 d-flex justify-content-center">
+                    <div class="card2">
+                        <img src="https://m.media-amazon.com/images/I/4150SciT6XL._AC_SY200_.jpg" alt="Earbuds">
+                        <p class="description">Earbuds</p>
+                    </div>
                 </div>
-                <div class="card2">
-                    <img src="https://m.media-amazon.com/images/I/41L1Fw2xgOL._AC_SY200_.jpg" alt="Tablets">
-                    <p class="description">Tablets</p>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 d-flex justify-content-center">
+                    <div class="card2">
+                        <img src="https://m.media-amazon.com/images/I/41L1Fw2xgOL._AC_SY200_.jpg" alt="Tablets">
+                        <p class="description">Tablets</p>
+                    </div>
                 </div>
-                <div class="card2">
-                    <img src="https://m.media-amazon.com/images/I/41gbs1aJDPL._AC_SY200_.jpg" alt="Budget Phones">
-                    <p class="description">Budget Phones</p>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 d-flex justify-content-center">
+                    <div class="card2">
+                        <img src="https://m.media-amazon.com/images/I/41gbs1aJDPL._AC_SY200_.jpg" alt="Budget Phones">
+                        <p class="description">Budget Phones</p>
+                    </div>
                 </div>
-                <div class="card2">
-                    <img src="https://m.media-amazon.com/images/I/41jD1eFYh9L._SX300_SY300_QL70_FMwebp_.jpg" alt="Fitness Trackers">
-                    <p class="description">Fitness Trackers</p>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 d-flex justify-content-center">
+                    <div class="card2">
+                        <img src="https://m.media-amazon.com/images/I/41jD1eFYh9L._SX300_SY300_QL70_FMwebp_.jpg" alt="Fitness Trackers">
+                        <p class="description">Fitness Trackers</p>
+                    </div>
                 </div>
-                <div class="card2">
-                    <img src="https://m.media-amazon.com/images/I/61vsa8+cNoL._SX679_.jpg" alt="Wireless Earphones">
-                    <p class="description">Wireless Earphones</p>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 d-flex justify-content-center">
+                    <div class="card2">
+                        <img src="https://m.media-amazon.com/images/I/61vsa8+cNoL._SX679_.jpg" alt="Wireless Earphones">
+                        <p class="description">Wireless Earphones</p>
+                    </div>
                 </div>
-                <div class="card2">
-                    <img src="https://m.media-amazon.com/images/I/81lGxS2ZisL._SX679_.jpg" alt="Smart Speakers">
-                    <p class="description">Smart Speakers</p>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 d-flex justify-content-center">
+                    <div class="card2">
+                        <img src="https://m.media-amazon.com/images/I/81lGxS2ZisL._SX679_.jpg" alt="Smart Speakers">
+                        <p class="description">Smart Speakers</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div id="login-page" class="content-section">
+    </section>
+    
+    <section id="login-section" class="content-section">
         <div class="container">
-            <div class="form-section">
-                <h2>Login to SnapStyle</h2>
-                <form>
-                    <div class="form-group">
-                        <label for="loginEmail">Email address</label>
-                        <input type="email" class="form-control" id="loginEmail" placeholder="Enter email" required>
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="form-section">
+                        <h2>Login to SnapStyle</h2>
+                        <form>
+                            <div class="form-group">
+                                <label for="loginEmail">Email address</label>
+                                <input type="email" class="form-control" id="loginEmail" placeholder="Enter email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="loginPassword">Password</label>
+                                <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                            <p class="text-center mt-3">Don't have an account? <a href="#register-section">Register here</a></p>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="loginPassword">Password</label>
-                        <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
-                    <p class="text-center mt-3">Don't have an account? <a href="#" onclick="showPage('register-page')">Register here</a></p>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div id="register-page" class="content-section">
-        <div class="container">
-            <div class="form-section">
-                <h2>Register for SnapStyle</h2>
-                <form>
-                    <div class="form-group">
-                        <label for="registerName">Full Name</label>
-                        <input type="text" class="form-control" id="registerName" placeholder="Enter your full name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="registerEmail">Email address</label>
-                        <input type="email" class="form-control" id="registerEmail" placeholder="Enter email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="registerPassword">Password</label>
-                        <input type="password" class="form-control" id="registerPassword" placeholder="Password" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="confirmPassword">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Register</button>
-                    <p class="text-center mt-3">Already have an account? <a href="#" onclick="showPage('login-page')">Login here</a></p>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div id="contactus-page" class="content-section">
-        <div class="container">
-            <div class="form-section">
-                <h2>Contact SnapStyle</h2>
-                <form action="https://formspree.io/f/mexample" method="POST">
-                    <div class="form-group">
-                        <label for="contactName">Your Name</label>
-                        <input type="text" name="name" class="form-control" id="contactName" placeholder="Enter your name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="contactEmail">Your Email</label>
-                        <input type="email" name="_replyto" class="form-control" id="contactEmail" placeholder="Enter your email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="contactMessage">Message</label>
-                        <textarea name="message" class="form-control" id="contactMessage" rows="5" placeholder="Type your message here..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
-                <div class="contact-info">
-                    <p><strong>Email:</strong> support@snapstyle.com</p>
-                    <p><strong>Phone:</strong> +91 12345 67890</p>
-                    <p><strong>Address:</strong> 123 Fashion Lane, Style City, India</p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <section id="register-section" class="content-section" style="background-color: #e3f2fd;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="form-section">
+                        <h2>Register for SnapStyle</h2>
+                        <form>
+                            <div class="form-group">
+                                <label for="registerName">Full Name</label>
+                                <input type="text" class="form-control" id="registerName" placeholder="Enter your full name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="registerEmail">Email address</label>
+                                <input type="email" class="form-control" id="registerEmail" placeholder="Enter email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="registerPassword">Password</label>
+                                <input type="password" class="form-control" id="registerPassword" placeholder="Password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Register</button>
+                            <p class="text-center mt-3">Already have an account? <a href="#login-section">Login here</a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact-section" class="content-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="form-section">
+                        <h2>Contact SnapStyle</h2>
+                        <form action="https://formspree.io/f/mexample" method="POST">
+                            <div class="form-group">
+                                <label for="contactName">Your Name</label>
+                                <input type="text" name="name" class="form-control" id="contactName" placeholder="Enter your name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail">Your Email</label>
+                                <input type="email" name="_replyto" class="form-control" id="contactEmail" placeholder="Enter your email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactMessage">Message</label>
+                                <textarea name="message" class="form-control" id="contactMessage" rows="5" placeholder="Type your message here..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                        <div class="contact-info">
+                            <p><strong>Email:</strong> support@snapstyle.com</p>
+                            <p><strong>Phone:</strong> +91 12345 67890</p>
+                            <p><strong>Address:</strong> 123 Fashion Lane, Style City, India</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer>
         <div class="footer0">
@@ -1031,47 +926,41 @@
         <div class="footer1">
             Connect with us:
             <div class="social-media">
-                <a href="#">
-                    <ion-icon name="logo-facebook"></ion-icon>
-                </a>
-                <a href="#">
-                    <ion-icon name="logo-whatsapp"></ion-icon>
-                </a>
-                <a href="#">
-                    <ion-icon name="logo-instagram"></ion-icon>
-                </a>
-                <a href="#">
-                    <ion-icon name="logo-twitter"></ion-icon>
-                </a>
+                <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+                <a href="#"><ion-icon name="logo-whatsapp"></ion-icon></a>
+                <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+                <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
             </div>
         </div>
-        <div class="footer2">
-            <div class="product">
-                <div class="heading">Products</div>
-                <div class="div">New Arrivals</div>
-                <div class="div">Best Sellers</div>
-                <div class="div">Deals</div>
-                <div class="div">Gift Cards</div>
-            </div>
-            <div class="services">
-                <div class="heading">Services</div>
-                <div class="div">Customer Service</div>
-                <div class="div">Returns & Exchanges</div>
-                <div class="div">Shipping</div>
-                <div class="div">Privacy Policy</div>
-            </div>
-            <div class="company">
-                <div class="heading">Company</div>
-                <div class="div">About Us</div>
-                <div class="div">Careers</div>
-                <div class="div">Press</div>
-                <div class="div">Blog</div>
-            </div>
-            <div class="contact">
-                <div class="heading">Contact Us</div>
-                <div class="div">Support Center</div>
-                <div class="div">Feedback</div>
-                <div class="div">Partnerships</div>
+        <div class="container mt-4">
+             <div class="row footer-links">
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="heading">Products</div>
+                    <div class="div">New Arrivals</div>
+                    <div class="div">Best Sellers</div>
+                    <div class="div">Deals</div>
+                    <div class="div">Gift Cards</div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="heading">Services</div>
+                    <div class="div">Customer Service</div>
+                    <div class="div">Returns & Exchanges</div>
+                    <div class="div">Shipping</div>
+                    <div class="div">Privacy Policy</div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="heading">Company</div>
+                    <div class="div">About Us</div>
+                    <div class="div">Careers</div>
+                    <div class="div">Press</div>
+                    <div class="div">Blog</div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="heading">Contact Us</div>
+                    <div class="div">Support Center</div>
+                    <div class="div">Feedback</div>
+                    <div class="div">Partnerships</div>
+                </div>
             </div>
         </div>
         <div class="footer3">
@@ -1083,51 +972,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-static-website/js/ccbp-ui-kit.js"></script>
-
-    <script>
-        let slideIndex = 0;
-        let slideshowTimeout;
-
-        function showSlides() {
-            let slides = document.querySelectorAll("#home-page .slide");
-            if (slides.length === 0 || document.getElementById('home-page').style.display === 'none') {
-                clearTimeout(slideshowTimeout);
-                return;
-            }
-            slides.forEach(slide => {
-                slide.style.display = "none";
-                slide.style.animation = "";
-            });
-            slideIndex++;
-            if (slideIndex > slides.length) slideIndex = 1;
-            slides[slideIndex - 1].style.display = "block";
-            slides[slideIndex - 1].style.animation = "slideLeft 1s forwards";
-            slideshowTimeout = setTimeout(showSlides, 3000);
-        }
-
-        function showPage(pageId) {
-            document.querySelectorAll('.content-section').forEach(section => {
-                section.style.display = 'none';
-            });
-            document.getElementById(pageId).style.display = 'block';
-            if (pageId === 'home-page') {
-                slideIndex = 0;
-                showSlides();
-            } else {
-                clearTimeout(slideshowTimeout);
-            }
-            if (window.innerWidth <= 768) {
-                $('.navbar-collapse').collapse('hide');
-            }
-            window.scrollTo(0, 0);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            showPage('home-page');
-            showSlides();
-        });
-    </script>
+    
 </body>
-
 </html>
